@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcryptjs");
 
 require("../db/connection");
 
@@ -103,10 +104,17 @@ router.post("/signin", async (req, res) =>
 
         if (!emailExist)
         {
-            return res.status(422).json({ error: "Kripya valid email enter kre." })
+            return res.status(422).json({ "error": "Invalid Credentials" })
         }
 
-        if (emailExist.password === password)
+        const isMatch = await bcrypt.compare(password, emailExist.password);
+
+        const token = await emailExist.generateAuthToken();
+        
+        
+
+
+        if (isMatch)
         {
             return res.status(200).json({ "message": "Ho gaya login" });
         }
