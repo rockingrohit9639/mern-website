@@ -65,10 +65,18 @@ router.post("/register", async (req, res) =>
         {
             return res.status(422).json({ error: "Bhai tumhara email already register h." });
         }
-        const user = new User({ name, email, phone, work, password, cpassword });
+        else if (password != cpassword)
+        {
+            return res.status(422).json({ error: "Password not matching." });
+        }
+        else
+        {
+            const user = new User({ name, email, phone, work, password, cpassword });
 
-        await user.save();
-        res.status(201).json({ message: "Bhai tera account create ho gaya." })
+            await user.save();
+            res.status(201).json({ message: "Bhai tera account create ho gaya." })
+        }
+
 
     }
     catch (error)
@@ -100,11 +108,11 @@ router.post("/signin", async (req, res) =>
 
         if (emailExist.password === password)
         {
-            return res.status(200).json({"message": "Ho gaya login"});
+            return res.status(200).json({ "message": "Ho gaya login" });
         }
         else
         {
-            return res.status(400).json({"message": "Tumse na ho payega."})
+            return res.status(400).json({ "message": "Tumse na ho payega." })
         }
     }
     catch (err)
