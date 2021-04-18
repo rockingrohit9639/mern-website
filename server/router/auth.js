@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const authenticate = require("../middleware/authenticate");
 
 require("../db/connection");
 
@@ -97,14 +98,14 @@ router.post("/signin", async (req, res) =>
 
         if (!email || !password)
         {
-            return res.status(422).json({ error: "Kryapya krke apne email or password enter kijiye." })
+            return res.status(400).json({ error: "Kryapya krke apne email or password enter kijiye." })
         }
 
         const emailExist = await User.findOne({ email: email });
 
         if (!emailExist)
         {
-            return res.status(422).json({ "error": "Invalid Credentials" })
+            return res.status(400).json({ "error": "Invalid Credentials" })
         }
 
         const isMatch = await bcrypt.compare(password, emailExist.password);
@@ -129,6 +130,12 @@ router.post("/signin", async (req, res) =>
     }
 
 
+});
+
+
+router.get("/about", authenticate ,(req, res) =>
+{
+    res.send(req.rootUser);
 })
 
 module.exports = router;

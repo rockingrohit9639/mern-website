@@ -14,25 +14,11 @@ app.use(express.json());
 // Linking the router file
 app.use(require("./router/auth"));
 
-// Middleware
-const middleware = (req, res, next) =>
-{
-    console.log("Hello from middleware.");
-    next();
 
-}
-// 10:34
-
-
-// app.get("/", (req, res) =>
+// app.get("/about", (req, res) =>
 // {
-//     res.send("This is our homepage");
+//     res.send("This is our About page");
 // })
-
-app.get("/about", (req, res) =>
-{
-    res.send("This is our About page");
-})
 
 app.get("/contact", (req, res) =>
 {
