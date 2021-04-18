@@ -45,11 +45,6 @@ app.get("/login", (req, res) =>
     res.send("This is our login page");
 })
 
-app.get("/signup", (req, res) =>
-{
-    res.send("This is our register page");
-})
-
 app.listen(PORT, () =>
 {
     console.log(`Listening : http://localhost:${ PORT }`)

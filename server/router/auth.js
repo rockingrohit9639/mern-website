@@ -49,7 +49,7 @@ router.get("/", (req, res) =>
 
 // <<< ADDING DOCUMENT USING async-await >>>
 
-router.post("/register", async (req, res) =>
+router.post("/signup", async (req, res) =>
 {
     const { name, email, phone, work, password, cpassword } = req.body;
 

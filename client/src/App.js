@@ -1,4 +1,5 @@
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.css";
 import Navbar from "./components/Navbar";
 import { Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
@@ -6,6 +7,11 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Error from "./components/Error";
+import "@fortawesome/fontawesome-free/js/brands";
+import "@fortawesome/fontawesome-free/js/solid";
+import "@fortawesome/fontawesome-free/js/fontawesome";
+
 
 function App() {
   return (
@@ -32,7 +38,11 @@ function App() {
         <Route exact path="/register">
           <Register />
         </Route>
-        
+
+        <Route>
+          <Error />
+        </Route>
+
       </Switch>
     </>
   );
