@@ -138,4 +138,19 @@ router.get("/about", authenticate ,(req, res) =>
     res.send(req.rootUser);
 })
 
+
+router.get("/getData", authenticate, (req, res) =>
+{
+    res.send(req.rootUser);
+})
+
+
+//logging out the user
+router.get("/logout", (req, res) =>
+{
+    console.log("This is logut");
+    res.clearCookie("jwtoken", {path: "/"});
+    res.status(200).send("User logout.");
+})
+
 module.exports = router;

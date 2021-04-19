@@ -8,6 +8,7 @@ import Contact from "./components/Contact";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Error from "./components/Error";
+import Logout from "./components/Logout";
 import "@fortawesome/fontawesome-free/js/brands";
 import "@fortawesome/fontawesome-free/js/solid";
 import "@fortawesome/fontawesome-free/js/fontawesome";
@@ -37,6 +38,10 @@ function App() {
 
         <Route exact path="/register">
           <Register />
+        </Route>
+
+        <Route exact path="/logout">
+          <Logout />
         </Route>
 
         <Route>
